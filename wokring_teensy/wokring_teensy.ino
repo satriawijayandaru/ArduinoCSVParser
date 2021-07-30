@@ -18,7 +18,16 @@ void loop() {
   }
 }
 
+
 void serialIN(char incomingSerial, bool debugMode) {
+
+/*  ADD THIS VARIABLES
+  String incomingString;
+  String incomingCSV[100];
+  int currentCSVIndex = 0;
+  int maxCSVIndex;
+*/
+
   char incomingByte;
   incomingByte = incomingSerial;
   incomingString += incomingByte;
@@ -34,7 +43,7 @@ void serialIN(char incomingSerial, bool debugMode) {
     currentCSVIndex++;
     incomingString = "";
   }
-  if (incomingByte == '`') {
+  if (incomingByte == '\n') {
     int str_len = incomingString.length() - 1;
     incomingCSV[currentCSVIndex] = incomingString.substring(0, str_len);
     if (debugMode == 1) {
@@ -43,8 +52,6 @@ void serialIN(char incomingSerial, bool debugMode) {
       Serial.print(" = ");
       Serial.println(incomingCSV[currentCSVIndex]);
 
-
-      
       Serial.print("max Index   = ");
       Serial.println(maxCSVIndex);
       Serial.println();
@@ -54,3 +61,39 @@ void serialIN(char incomingSerial, bool debugMode) {
     currentCSVIndex = 0;
   }
 }
+
+
+//void serialIN(char incomingSerial, bool debugMode) {
+//  char incomingByte;
+//  incomingByte = incomingSerial;
+//  incomingString += incomingByte;
+//  if (incomingByte == ',') {
+//    int str_len = incomingString.length() - 1;
+//    incomingCSV[currentCSVIndex] = incomingString.substring(0, str_len);
+//    if (debugMode == 1) {
+//      Serial.print("Incoming ");
+//      Serial.print(currentCSVIndex);
+//      Serial.print(" = ");
+//      Serial.println(incomingCSV[currentCSVIndex]);
+//    }
+//    currentCSVIndex++;
+//    incomingString = "";
+//  }
+//  if (incomingByte == '`') {
+//    int str_len = incomingString.length() - 1;
+//    incomingCSV[currentCSVIndex] = incomingString.substring(0, str_len);
+//    if (debugMode == 1) {
+//      Serial.print("Incoming ");
+//      Serial.print(currentCSVIndex);
+//      Serial.print(" = ");
+//      Serial.println(incomingCSV[currentCSVIndex]);
+//
+//      Serial.print("max Index   = ");
+//      Serial.println(maxCSVIndex);
+//      Serial.println();
+//    }
+//    incomingString = "";
+//    maxCSVIndex = currentCSVIndex;
+//    currentCSVIndex = 0;
+//  }
+//}

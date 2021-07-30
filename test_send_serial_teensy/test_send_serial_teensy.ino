@@ -20,7 +20,7 @@ void loop() {
   formatted += millis() / 3.00;
   formatted += ',';
   formatted += "Satria";
-  formatted += '`';
+//  formatted += '`';
   ser1.println(formatted);
   ser2.println(formatted);
   delay(20);
